@@ -51,10 +51,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="../../_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="harmonica.prism_layer" href="harmonica.prism_layer.html" />
+    <link rel="next" title="harmonica.dipole_magnetic" href="harmonica.dipole_magnetic.html" />
     <link rel="prev" title="harmonica.prism_gravity" href="harmonica.prism_gravity.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
@@ -232,6 +233,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/point.html">
      Point sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
     </a>
    </li>
    <li class="toctree-l2">
@@ -416,6 +422,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +477,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -661,7 +687,7 @@
 <h1>harmonica.tesseroid_gravity<a class="headerlink" href="#harmonica-tesseroid-gravity" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="harmonica.tesseroid_gravity">
-<span class="sig-prename descclassname"><span class="pre">harmonica.</span></span><span class="sig-name descname"><span class="pre">tesseroid_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tesseroids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radial_adaptive_discretization=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_checks=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/harmonica/_forward/tesseroid.html#tesseroid_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#harmonica.tesseroid_gravity" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">harmonica.</span></span><span class="sig-name descname"><span class="pre">tesseroid_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tesseroids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radial_adaptive_discretization=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_checks=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/harmonica/_forward/tesseroid.html#tesseroid_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#harmonica.tesseroid_gravity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute gravitational field of tesseroids on computation points.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -670,15 +696,23 @@ acceleration on the local North oriented coordinate system.
 It is equivalent to the opposite of the radial component, therefore
 it’s positive if the acceleration vector points inside the spheroid.</p>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>The gravitational potential is returned in
+<span class="math notranslate nohighlight">\(\text{J}/\text{kg}\)</span>.</p></li>
+<li><p>The gravity acceleration components are returned in mGal
+(<span class="math notranslate nohighlight">\(\text{m}/\text{s}^2\)</span>).</p></li>
+</ul>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>coordinates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em> or </em><em>1d-array</em>) – List or array containing <code class="docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">radius</span></code> of
-the computation points defined on a spherical geocentric coordinate
-system.
-Both <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and <code class="docutils literal notranslate"><span class="pre">latitude</span></code> should be in degrees and <code class="docutils literal notranslate"><span class="pre">radius</span></code>
-in meters.</p></li>
-<li><p><strong>tesseroids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em> or </em><em>1d-array</em>) – List or array containing the coordinates of the tesseroid:
+<li><p><strong>coordinates</strong> (<em>list of arrays</em>) – List of arrays containing the <code class="docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and
+<code class="docutils literal notranslate"><span class="pre">radius</span></code> coordinates of the computation points, defined on
+a spherical geocentric coordinate system. Both <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and
+<code class="docutils literal notranslate"><span class="pre">latitude</span></code> should be in degrees and <code class="docutils literal notranslate"><span class="pre">radius</span></code> in meters.</p></li>
+<li><p><strong>tesseroids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> or </em><em>2d-array</em>) – List or array containing the coordinates of the tesseroid:
 <code class="docutils literal notranslate"><span class="pre">w</span></code>, <code class="docutils literal notranslate"><span class="pre">e</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code> under a geocentric
 spherical coordinate system.
 The longitudinal and latitudinal boundaries should be in degrees, while
@@ -689,25 +723,28 @@ the tesseroids, in which case the variable density tesseroids method
 introduced in <a class="reference internal" href="../../references.html#soler2019" id="id1"><span>[Soler2019]</span></a> will be used.
 If <code class="docutils literal notranslate"><span class="pre">density</span></code> is a function, it should be decorated with
 <a class="reference external" href="https://numba.pydata.org/numba-doc/latest/reference/jit-compilation.html#numba.jit" title="(in Numba v0.50)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numba.jit</span></code></a>.</p></li>
-<li><p><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – <p>Gravitational field that wants to be computed.
+<li><p><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – <p>Gravitational field that wants to be computed.
 The available fields are:</p>
 <ul>
 <li><p>Gravitational potential: <code class="docutils literal notranslate"><span class="pre">potential</span></code></p></li>
 <li><p>Downward acceleration: <code class="docutils literal notranslate"><span class="pre">g_z</span></code></p></li>
 </ul>
 </p></li>
-<li><p><strong>parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If True the computations will run in parallel using Numba built-in
+<li><p><strong>parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If True the computations will run in parallel using Numba built-in
 parallelization. If False, the forward model will run on a single core.
 Might be useful to disable parallelization if the forward model is run
 by an already parallelized workflow. Default to True.</p></li>
-<li><p><strong>radial_adaptive_discretization</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the adaptive discretization algorithm will split the
+<li><p><strong>radial_adaptive_discretization</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the adaptive discretization algorithm will split the
 tesseroid only on the horizontal direction.
 If <code class="docutils literal notranslate"><span class="pre">True</span></code>, it will perform a three dimensional adaptive
 discretization, splitting the tesseroids on every direction.
 Default <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p><strong>dtype</strong> (<em>data-type</em><em> (</em><em>optional</em><em>)</em>) – Data type assigned to the resulting gravitational field. Default to
 <code class="docutils literal notranslate"><span class="pre">np.float64</span></code>.</p></li>
-<li><p><strong>disable_checks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – Flag that controls whether to perform a sanity check on the model.
+<li><p><strong>progressbar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If True, a progress bar of the computation will be printed to standard
+error (stderr). Requires <code class="xref py py-mod docutils literal notranslate"><span class="pre">numba_progress</span></code> to be installed.
+Default to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>disable_checks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – Flag that controls whether to perform a sanity check on the model.
 Should be set to <code class="docutils literal notranslate"><span class="pre">True</span></code> only when it is certain that the input model
 is valid and it does not need to be checked.
 Default to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
@@ -715,7 +752,8 @@ Default to <code class="docutils literal notranslate"><span class="pre">False</s
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>result</strong> (<em>array</em>) – Gravitational field generated by the tesseroids on the computation
-points.</p>
+points. Gravitational potential is returned in
+<span class="math notranslate nohighlight">\(\text{J}/\text{kg}\)</span> and acceleration components in mGal.</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
@@ -742,7 +780,7 @@ points.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Define a linear density function for the same tesseroid.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># It should be decorated with numba.njit</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nd">@jit</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">linear_density</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">density_top</span> <span class="o">=</span> <span class="mf">2670.</span>
 <span class="gp">... </span>    <span class="n">density_bottom</span> <span class="o">=</span> <span class="mf">3300.</span>
@@ -782,10 +820,10 @@ points.</p>
             <p class="prev-next-title">harmonica.prism_gravity</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="harmonica.prism_layer.html" title="next page">
+    <a class='right-next' id="next-link" href="harmonica.dipole_magnetic.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">harmonica.prism_layer</p>
+        <p class="prev-next-title">harmonica.dipole_magnetic</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -797,7 +835,7 @@ points.</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

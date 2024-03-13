@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="harmonica.tesseroid_layer" href="harmonica.tesseroid_layer.html" />
-    <link rel="prev" title="harmonica.tesseroid_gravity" href="harmonica.tesseroid_gravity.html" />
+    <link rel="prev" title="harmonica.prism_magnetic" href="harmonica.prism_magnetic.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
@@ -232,6 +232,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/point.html">
      Point sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
     </a>
    </li>
    <li class="toctree-l2">
@@ -415,6 +420,21 @@
      harmonica.tesseroid_gravity
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      harmonica.prism_layer
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -665,7 +690,7 @@
 <dd><p>Create a layer of prisms of equal size</p>
 <p>Build a regular grid of prisms of equal size on the horizontal directions
 with variable top and bottom boundaries and properties like density,
-magnetization, etc. The function returns a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>
+magnetization, etc. The function returns a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>
 containing <code class="docutils literal notranslate"><span class="pre">easting</span></code>, <code class="docutils literal notranslate"><span class="pre">northing</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code> and <code class="docutils literal notranslate"><span class="pre">bottom</span></code> coordinates,
 and all physical properties as <code class="docutils literal notranslate"><span class="pre">data_var</span></code> s. The <code class="docutils literal notranslate"><span class="pre">easting</span></code> and
 <code class="docutils literal notranslate"><span class="pre">northing</span></code> coordinates correspond to the location of the center of each
@@ -678,29 +703,29 @@ and attributes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>coordinates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a>) – List containing the coordinates of the centers of the prisms in the
+<li><p><strong>coordinates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a>) – List containing the coordinates of the centers of the prisms in the
 following order: <code class="docutils literal notranslate"><span class="pre">easting</span></code>, <code class="docutils literal notranslate"><span class="pre">northing</span></code>. The arrays must be 1d
 arrays containing the coordinates of the centers per axis, or could be
-2d arrays as the ones returned by <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html#numpy.meshgrid" title="(in NumPy v1.24)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.meshgrid</span></code></a>. All
+2d arrays as the ones returned by <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html#numpy.meshgrid" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.meshgrid</span></code></a>. All
 coordinates should be in meters and should define a regular grid.</p></li>
 <li><p><strong>surface</strong> (<em>2d-array</em>) – Array used to create the uppermost boundary of the prisms layer. All
 heights should be in meters. On every point where <code class="docutils literal notranslate"><span class="pre">surface</span></code> is below
 <code class="docutils literal notranslate"><span class="pre">reference</span></code>, the <code class="docutils literal notranslate"><span class="pre">surface</span></code> value will be used to set the
 <code class="docutils literal notranslate"><span class="pre">bottom</span></code> boundary of that prism, while the <code class="docutils literal notranslate"><span class="pre">reference</span></code> value will
 be used to set the <code class="docutils literal notranslate"><span class="pre">top</span></code> boundary of the prism.</p></li>
-<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>2d-array</em>) – Reference surface used to create the lowermost boundary of the prisms
+<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>2d-array</em>) – Reference surface used to create the lowermost boundary of the prisms
 layer. It can be either a plane or an irregular surface passed as 2d
 array. Height(s) must be in meters.</p></li>
-<li><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em> or </em><em>None</em>) – Dictionary containing the physical properties of the prisms. The keys
+<li><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em> or </em><em>None</em>) – Dictionary containing the physical properties of the prisms. The keys
 must be strings that will be used to name the corresponding <code class="docutils literal notranslate"><span class="pre">data_var</span></code>
-inside the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>, while the values must be 2d-arrays.
+inside the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>, while the values must be 2d-arrays.
 All physical properties must be passed in SI units. If None, no
-<code class="docutils literal notranslate"><span class="pre">data_var</span></code> will be added to the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>. Default is
+<code class="docutils literal notranslate"><span class="pre">data_var</span></code> will be added to the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>. Default is
 None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>dataset</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>) – Dataset containing the coordinates of the center of each prism, the
+<dd class="field-even"><p><strong>dataset</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>) – Dataset containing the coordinates of the center of each prism, the
 height of its top and bottom boundaries and its corresponding physical
 properties.</p>
 </dd>
@@ -770,11 +795,11 @@ properties.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="harmonica.tesseroid_gravity.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="harmonica.prism_magnetic.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">harmonica.tesseroid_gravity</p>
+            <p class="prev-next-title">harmonica.prism_magnetic</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="harmonica.tesseroid_layer.html" title="next page">
@@ -792,7 +817,7 @@ properties.</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

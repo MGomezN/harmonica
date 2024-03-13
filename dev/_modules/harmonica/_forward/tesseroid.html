@@ -233,6 +233,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -414,6 +419,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -454,8 +474,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -613,12 +638,11 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">prange</span>
 
-<span class="kn">from</span> <span class="nn">..constants</span> <span class="kn">import</span> <span class="n">GRAVITATIONAL_CONST</span>
 <span class="kn">from</span> <span class="nn">._tesseroid_utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_adaptive_discretization</span><span class="p">,</span>
-    <span class="n">_check_points_outside_tesseroids</span><span class="p">,</span>
     <span class="n">_check_tesseroids</span><span class="p">,</span>
     <span class="n">_discard_null_tesseroids</span><span class="p">,</span>
+    <span class="n">check_points_outside_tesseroids</span><span class="p">,</span>
     <span class="n">gauss_legendre_quadrature</span><span class="p">,</span>
     <span class="n">glq_nodes_weights</span><span class="p">,</span>
 <span class="p">)</span>
@@ -626,7 +650,8 @@
     <span class="n">density_based_discretization</span><span class="p">,</span>
     <span class="n">gauss_legendre_quadrature_variable_density</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">.point</span> <span class="kn">import</span> <span class="n">kernel_g_z_spherical</span><span class="p">,</span> <span class="n">kernel_potential_spherical</span>
+<span class="kn">from</span> <span class="nn">.point</span> <span class="kn">import</span> <span class="n">gravity_u_spherical</span><span class="p">,</span> <span class="n">potential_spherical</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">initialize_progressbar</span>
 
 <span class="n">STACK_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">MAX_DISCRETIZATIONS</span> <span class="o">=</span> <span class="mi">100000</span>
@@ -642,9 +667,10 @@
     <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">radial_adaptive_discretization</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="n">progressbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">disable_checks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute gravitational field of tesseroids on computation points.</span>
 
 <span class="sd">    .. warning::</span>
@@ -654,15 +680,21 @@
 <span class="sd">        It is equivalent to the opposite of the radial component, therefore</span>
 <span class="sd">        it&#39;s positive if the acceleration vector points inside the spheroid.</span>
 
+<span class="sd">    .. important::</span>
+
+<span class="sd">        - The gravitational potential is returned in</span>
+<span class="sd">          :math:`\text{J}/\text{kg}`.</span>
+<span class="sd">        - The gravity acceleration components are returned in mGal</span>
+<span class="sd">          (:math:`\text{m}/\text{s}^2`).</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    coordinates : list or 1d-array</span>
-<span class="sd">        List or array containing ``longitude``, ``latitude`` and ``radius`` of</span>
-<span class="sd">        the computation points defined on a spherical geocentric coordinate</span>
-<span class="sd">        system.</span>
-<span class="sd">        Both ``longitude`` and ``latitude`` should be in degrees and ``radius``</span>
-<span class="sd">        in meters.</span>
-<span class="sd">    tesseroids : list or 1d-array</span>
+<span class="sd">    coordinates : list of arrays</span>
+<span class="sd">        List of arrays containing the ``longitude``, ``latitude`` and</span>
+<span class="sd">        ``radius`` coordinates of the computation points, defined on</span>
+<span class="sd">        a spherical geocentric coordinate system. Both ``longitude`` and</span>
+<span class="sd">        ``latitude`` should be in degrees and ``radius`` in meters.</span>
+<span class="sd">    tesseroids : list or 2d-array</span>
 <span class="sd">        List or array containing the coordinates of the tesseroid:</span>
 <span class="sd">        ``w``, ``e``, ``s``, ``n``, ``bottom``, ``top`` under a geocentric</span>
 <span class="sd">        spherical coordinate system.</span>
@@ -696,6 +728,10 @@
 <span class="sd">    dtype : data-type (optional)</span>
 <span class="sd">        Data type assigned to the resulting gravitational field. Default to</span>
 <span class="sd">        ``np.float64``.</span>
+<span class="sd">    progressbar : bool (optional)</span>
+<span class="sd">        If True, a progress bar of the computation will be printed to standard</span>
+<span class="sd">        error (stderr). Requires :mod:`numba_progress` to be installed.</span>
+<span class="sd">        Default to ``False``.</span>
 <span class="sd">    disable_checks : bool (optional)</span>
 <span class="sd">        Flag that controls whether to perform a sanity check on the model.</span>
 <span class="sd">        Should be set to ``True`` only when it is certain that the input model</span>
@@ -706,7 +742,8 @@
 <span class="sd">    -------</span>
 <span class="sd">    result : array</span>
 <span class="sd">        Gravitational field generated by the tesseroids on the computation</span>
-<span class="sd">        points.</span>
+<span class="sd">        points. Gravitational potential is returned in</span>
+<span class="sd">        :math:`\text{J}/\text{kg}` and acceleration components in mGal.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
@@ -735,7 +772,7 @@
 <span class="sd">    &gt;&gt;&gt; # Define a linear density function for the same tesseroid.</span>
 <span class="sd">    &gt;&gt;&gt; # It should be decorated with numba.njit</span>
 <span class="sd">    &gt;&gt;&gt; from numba import jit</span>
-<span class="sd">    &gt;&gt;&gt; @jit</span>
+<span class="sd">    &gt;&gt;&gt; @jit(nopython=True)</span>
 <span class="sd">    ... def linear_density(radius):</span>
 <span class="sd">    ...     density_top = 2670.</span>
 <span class="sd">    ...     density_bottom = 3300.</span>
@@ -747,7 +784,10 @@
 <span class="sd">    ... )</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">kernels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;potential&quot;</span><span class="p">:</span> <span class="n">kernel_potential_spherical</span><span class="p">,</span> <span class="s2">&quot;g_z&quot;</span><span class="p">:</span> <span class="n">kernel_g_z_spherical</span><span class="p">}</span>
+    <span class="n">kernels</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;potential&quot;</span><span class="p">:</span> <span class="n">potential_spherical</span><span class="p">,</span>
+        <span class="s2">&quot;g_z&quot;</span><span class="p">:</span> <span class="n">gravity_u_spherical</span><span class="p">,</span>
+    <span class="p">}</span>
     <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Gravitational field </span><span class="si">{}</span><span class="s2"> not recognized&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">field</span><span class="p">))</span>
     <span class="c1"># Figure out the shape and size of the output array</span>
@@ -759,9 +799,9 @@
     <span class="c1"># Sanity checks for tesseroids and computation points</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">disable_checks</span><span class="p">:</span>
         <span class="n">tesseroids</span> <span class="o">=</span> <span class="n">_check_tesseroids</span><span class="p">(</span><span class="n">tesseroids</span><span class="p">)</span>
-        <span class="n">_check_points_outside_tesseroids</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tesseroids</span><span class="p">)</span>
+        <span class="n">check_points_outside_tesseroids</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tesseroids</span><span class="p">)</span>
     <span class="c1"># Check if density is a function or constant values</span>
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
         <span class="c1"># Run density-based discretization on each tesseroid</span>
         <span class="n">tesseroids</span> <span class="o">=</span> <span class="n">density_based_discretization</span><span class="p">(</span><span class="n">tesseroids</span><span class="p">,</span> <span class="n">density</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -777,21 +817,25 @@
     <span class="c1"># tesseroid</span>
     <span class="n">glq_nodes</span><span class="p">,</span> <span class="n">glq_weights</span> <span class="o">=</span> <span class="n">glq_nodes_weights</span><span class="p">(</span><span class="n">GLQ_DEGREES</span><span class="p">)</span>
     <span class="c1"># Compute gravitational field</span>
-    <span class="n">dispatcher</span><span class="p">(</span><span class="n">parallel</span><span class="p">,</span> <span class="n">density</span><span class="p">)(</span>
-        <span class="n">coordinates</span><span class="p">,</span>
-        <span class="n">tesseroids</span><span class="p">,</span>
-        <span class="n">density</span><span class="p">,</span>
-        <span class="n">result</span><span class="p">,</span>
-        <span class="n">DISTANCE_SIZE_RATII</span><span class="p">[</span><span class="n">field</span><span class="p">],</span>
-        <span class="n">radial_adaptive_discretization</span><span class="p">,</span>
-        <span class="n">glq_nodes</span><span class="p">,</span>
-        <span class="n">glq_weights</span><span class="p">,</span>
-        <span class="n">kernels</span><span class="p">[</span><span class="n">field</span><span class="p">],</span>
-        <span class="n">dtype</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">result</span> <span class="o">*=</span> <span class="n">GRAVITATIONAL_CONST</span>
+    <span class="k">with</span> <span class="n">initialize_progressbar</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">progressbar</span><span class="p">)</span> <span class="k">as</span> <span class="n">progress_proxy</span><span class="p">:</span>
+        <span class="n">dispatcher</span><span class="p">(</span><span class="n">parallel</span><span class="p">,</span> <span class="n">density</span><span class="p">)(</span>
+            <span class="n">coordinates</span><span class="p">,</span>
+            <span class="n">tesseroids</span><span class="p">,</span>
+            <span class="n">density</span><span class="p">,</span>
+            <span class="n">result</span><span class="p">,</span>
+            <span class="n">DISTANCE_SIZE_RATII</span><span class="p">[</span><span class="n">field</span><span class="p">],</span>
+            <span class="n">radial_adaptive_discretization</span><span class="p">,</span>
+            <span class="n">glq_nodes</span><span class="p">,</span>
+            <span class="n">glq_weights</span><span class="p">,</span>
+            <span class="n">kernels</span><span class="p">[</span><span class="n">field</span><span class="p">],</span>
+            <span class="n">dtype</span><span class="p">,</span>
+            <span class="n">progress_proxy</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="c1"># Invert sign</span>
+    <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;g_z&quot;</span><span class="p">,):</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="c1"># Convert to more convenient units</span>
-    <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s2">&quot;g_z&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;g_z&quot;</span><span class="p">,):</span>
         <span class="n">result</span> <span class="o">*=</span> <span class="mf">1e5</span>  <span class="c1"># SI to mGal</span>
     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">cast</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
@@ -803,7 +847,7 @@
 <span class="sd">    The choice of the forward modelling function is based on whether the</span>
 <span class="sd">    density is a function and if the model should be run in parallel.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
         <span class="n">dispatchers</span> <span class="o">=</span> <span class="p">{</span>
             <span class="kc">True</span><span class="p">:</span> <span class="n">jit_tesseroid_gravity_variable_density_parallel</span><span class="p">,</span>
             <span class="kc">False</span><span class="p">:</span> <span class="n">jit_tesseroid_gravity_variable_density_serial</span><span class="p">,</span>
@@ -816,7 +860,7 @@
     <span class="k">return</span> <span class="n">dispatchers</span><span class="p">[</span><span class="n">parallel</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">jit_tesseroid_gravity</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">jit_tesseroid_gravity</span><span class="p">(</span>  <span class="c1"># noqa: CFQ002</span>
     <span class="n">coordinates</span><span class="p">,</span>
     <span class="n">tesseroids</span><span class="p">,</span>
     <span class="n">density</span><span class="p">,</span>
@@ -827,6 +871,7 @@
     <span class="n">glq_weights</span><span class="p">,</span>
     <span class="n">kernel</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">progress_proxy</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute gravitational field of tesseroids on computations points</span>
@@ -872,7 +917,11 @@
 <span class="sd">        Kernel function for the gravitational field of point masses.</span>
 <span class="sd">    dtype : data-type</span>
 <span class="sd">        Data type assigned to the resulting gravitational field.</span>
+<span class="sd">    progress_proxy : :class:`numba_progress.ProgressBar` or None</span>
+<span class="sd">        Instance of :class:`numba_progress.ProgressBar` or None.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if we need to update the progressbar on each iteration</span>
+    <span class="n">update_progressbar</span> <span class="o">=</span> <span class="n">progress_proxy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
     <span class="c1"># Get coordinates of the observation points</span>
     <span class="c1"># and precompute trigonometric functions</span>
     <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[:]</span>
@@ -909,9 +958,12 @@
                     <span class="n">glq_weights</span><span class="p">,</span>
                     <span class="n">kernel</span><span class="p">,</span>
                 <span class="p">)</span>
+        <span class="c1"># Update progress bar</span>
+        <span class="k">if</span> <span class="n">update_progressbar</span><span class="p">:</span>
+            <span class="n">progress_proxy</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">jit_tesseroid_gravity_variable_density</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">jit_tesseroid_gravity_variable_density</span><span class="p">(</span>  <span class="c1"># noqa: CFQ002</span>
     <span class="n">coordinates</span><span class="p">,</span>
     <span class="n">tesseroids</span><span class="p">,</span>
     <span class="n">density</span><span class="p">,</span>
@@ -922,6 +974,7 @@
     <span class="n">glq_weights</span><span class="p">,</span>
     <span class="n">kernel</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">progress_proxy</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute gravitational field of tesseroids on computations points</span>
@@ -967,7 +1020,11 @@
 <span class="sd">        Kernel function for the gravitational field of point masses.</span>
 <span class="sd">    dtype : data-type</span>
 <span class="sd">        Data type assigned to the resulting gravitational field.</span>
+<span class="sd">    progress_proxy : :class:`numba_progress.ProgressBar` or None</span>
+<span class="sd">        Instance of :class:`numba_progress.ProgressBar` or None.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if we need to update the progressbar on each iteration</span>
+    <span class="n">update_progressbar</span> <span class="o">=</span> <span class="n">progress_proxy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
     <span class="c1"># Get coordinates of the observation points</span>
     <span class="c1"># and precompute trigonometric functions</span>
     <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[:]</span>
@@ -1004,6 +1061,9 @@
                     <span class="n">glq_weights</span><span class="p">,</span>
                     <span class="n">kernel</span><span class="p">,</span>
                 <span class="p">)</span>
+        <span class="c1"># Update progress bar</span>
+        <span class="k">if</span> <span class="n">update_progressbar</span><span class="p">:</span>
+            <span class="n">progress_proxy</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
 <span class="c1"># Define jitted versions of the forward modelling function</span>
@@ -1032,7 +1092,7 @@
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

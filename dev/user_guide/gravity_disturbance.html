@@ -236,6 +236,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -417,6 +422,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -457,8 +477,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -663,7 +688,7 @@ to compute gravity disturbances.</p>
 <p>Lets start by loading a sample gravity dataset for the whole Earth:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ensaio</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ensaio</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 
 <span class="n">fname</span> <span class="o">=</span> <span class="n">ensaio</span><span class="o">.</span><span class="n">fetch_earth_gravity</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -673,7 +698,7 @@ to compute gravity disturbances.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;gravity&#39; (latitude: 1081, longitude: 2161)&gt;
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;gravity&#39; (latitude: 1081, longitude: 2161)&gt; Size: 9MB
 array([[980106.5 , 980106.5 , 980106.5 , ..., 980106.5 , 980106.5 ,
         980106.5 ],
        [980108.25, 980108.25, 980108.25, ..., 980108.25, 980108.25,
@@ -688,9 +713,9 @@ array([[980106.5 , 980106.5 , 980106.5 , ..., 980106.5 , 980106.5 ,
        [980157.5 , 980157.5 , 980157.5 , ..., 980157.5 , 980157.5 ,
         980157.5 ]], dtype=float32)
 Coordinates:
-  * longitude  (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-  * latitude   (latitude) float64 -90.0 -89.83 -89.67 -89.5 ... 89.67 89.83 90.0
-    height     (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04
+  * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+  * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04
 Attributes:
     Conventions:     CF-1.8
     title:           Gravity acceleration (EIGEN-6C4) at a constant geometric...
@@ -712,7 +737,7 @@ same height of 10 km above the reference ellipsoid.
 Lets plot it:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
@@ -732,7 +757,6 @@ Lets plot it:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/gravity_disturbance_1_0.png" src="../_images/gravity_disturbance_1_0.png" />
 </div>
 </div>
 <p>We can then get the WGS84 ellipsoid defined in <a class="reference external" href="https://www.fatiando.org/boule/latest/api/index.html#module-boule" title="(in Boule vv0.4.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">boule</span></code></a> and use the
@@ -743,7 +767,7 @@ calculates the normal gravity at any latitude and (geometric) height through an
 analytic solution.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
 
 <span class="n">ellipsoid</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span>
 <span class="n">normal_gravity</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">gravity</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">gravity</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
@@ -756,7 +780,7 @@ analytic solution.</p>
 <p>And plot it:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">normal_gravity</span><span class="p">,</span>
     <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span>
@@ -774,19 +798,18 @@ analytic solution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/gravity_disturbance_3_2.png" src="../_images/gravity_disturbance_3_2.png" />
 </div>
 </div>
 <p>Now we can compute the gravity disturbance:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gravity_disturbance</span> <span class="o">=</span> <span class="n">gravity</span> <span class="o">-</span> <span class="n">normal_gravity</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gravity_disturbance</span> <span class="o">=</span> <span class="n">gravity</span> <span class="o">-</span> <span class="n">normal_gravity</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gravity_disturbance</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt;
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt; Size: 19MB
 array([[-35.83509235, -35.83509235, -35.83509235, ..., -35.83509235,
         -35.83509235, -35.83509235],
        [-34.04097894, -34.04097894, -34.04097894, ..., -34.04097894,
@@ -794,16 +817,16 @@ array([[-35.83509235, -35.83509235, -35.83509235, ..., -35.83509235,
        [-33.34614042, -33.34614042, -33.34614042, ..., -33.40864042,
         -33.40864042, -33.34614042],
        ...,
-       [ 11.65385965,  11.59135965,  11.46635965, ...,  11.77885965,
-         11.65385965,  11.65385965],
+       [ 11.65385958,  11.59135958,  11.46635958, ...,  11.77885958,
+         11.65385958,  11.65385958],
        [ 18.14652106,  18.14652106,  18.14652106, ...,  18.14652106,
          18.14652106,  18.14652106],
        [ 15.16490765,  15.16490765,  15.16490765, ...,  15.16490765,
          15.16490765,  15.16490765]])
 Coordinates:
-  * longitude  (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-  * latitude   (latitude) float64 -90.0 -89.83 -89.67 -89.5 ... 89.67 89.83 90.0
-    height     (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04
+  * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+  * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04
 </pre></div>
 </div>
 </div>
@@ -811,7 +834,7 @@ Coordinates:
 <p>And plot it:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
 
 <span class="n">maxabs</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">maxabs</span><span class="p">(</span><span class="n">gravity_disturbance</span><span class="p">)</span>
 
@@ -834,11 +857,31 @@ Coordinates:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/gravity_disturbance_5_2.png" src="../_images/gravity_disturbance_5_2.png" />
 </div>
 </div>
 <p>The gravity disturbances can be interpreted as the gravitational effect of
 every <em>anomalous mass</em>, i.e. that is not contained in the <em>normal Earth</em>.</p>
+<hr class="docutils" />
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../_downloads/4041351d1018e723f884f105426684c3/gravity_disturbance.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">script</span></code></a></div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../_downloads/b1f8afeb30945097e45e64e87a1e8139/gravity_disturbance.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook</span></code></a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -869,7 +912,7 @@ every <em>anomalous mass</em>, i.e. that is not contained in the <em>normal Eart
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

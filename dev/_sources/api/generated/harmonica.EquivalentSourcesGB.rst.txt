@@ -139,6 +139,30 @@ harmonica.EquivalentSourcesGB
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         EquivalentSourcesGB.estimate_required_memory
     
     
@@ -148,6 +172,10 @@ harmonica.EquivalentSourcesGB
     
     
         EquivalentSourcesGB.fit
+    
+    
+    
+        EquivalentSourcesGB.get_metadata_routing
     
     
     
@@ -179,7 +207,19 @@ harmonica.EquivalentSourcesGB
     
     
     
+        EquivalentSourcesGB.set_fit_request
+    
+    
+    
         EquivalentSourcesGB.set_params
+    
+    
+    
+        EquivalentSourcesGB.set_predict_request
+    
+    
+    
+        EquivalentSourcesGB.set_score_request
     
     
 
@@ -198,6 +238,10 @@ harmonica.EquivalentSourcesGB
 
 
 .. automethod:: EquivalentSourcesGB.fit
+
+
+
+.. automethod:: EquivalentSourcesGB.get_metadata_routing
 
 
 
@@ -229,7 +273,19 @@ harmonica.EquivalentSourcesGB
 
 
 
+.. automethod:: EquivalentSourcesGB.set_fit_request
+
+
+
 .. automethod:: EquivalentSourcesGB.set_params
+
+
+
+.. automethod:: EquivalentSourcesGB.set_predict_request
+
+
+
+.. automethod:: EquivalentSourcesGB.set_score_request
 
 
 

@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -644,16 +669,16 @@ common default values for the reference thickness and crust, mantle
 isostatic Moho depth of Africa.</p>
 <img src="../_images/sphx_glr_isostatic_moho_airy_001.png" srcset="../_images/sphx_glr_isostatic_moho_airy_001.png" alt="isostatic moho airy" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Topography/bathymetry grid:
-&lt;xarray.Dataset&gt;
+&lt;xarray.Dataset&gt; Size: 991kB
 Dimensions:     (longitude: 481, latitude: 511)
 Coordinates:
-  * longitude   (longitude) float64 -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
-  * latitude    (latitude) float64 -40.0 -39.83 -39.67 ... 44.67 44.83 45.0
+  * longitude   (longitude) float64 4kB -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
+  * latitude    (latitude) float64 4kB -40.0 -39.83 -39.67 ... 44.67 44.83 45.0
 Data variables:
-    topography  (latitude, longitude) float32 -3.528e+03 -3.51e+03 ... 31.0 33.0
+    topography  (latitude, longitude) float32 983kB -3.528e+03 ... 33.0
 
 Moho depth grid:
-&lt;xarray.DataArray &#39;moho_depth&#39; (latitude: 511, longitude: 481)&gt;
+&lt;xarray.DataArray &#39;moho_depth&#39; (latitude: 511, longitude: 481)&gt; Size: 983kB
 array([[17510.88  , 17574.602 , 17712.66  , ..., 11715.9   , 11602.619 ,
         11443.32  ],
        [17833.02  , 17942.76  , 18165.781 , ..., 11609.699 , 11581.381 ,
@@ -668,14 +693,13 @@ array([[17510.88  , 17574.602 , 17712.66  , ..., 11715.9   , 11602.619 ,
        [15362.101 , 15517.86  , 15252.359 , ..., 30151.2   , 30173.6   ,
         30184.8   ]], dtype=float32)
 Coordinates:
-  * longitude  (longitude) float64 -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
-  * latitude   (latitude) float64 -40.0 -39.83 -39.67 -39.5 ... 44.67 44.83 45.0
+  * longitude  (longitude) float64 4kB -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
+  * latitude   (latitude) float64 4kB -40.0 -39.83 -39.67 ... 44.67 44.83 45.0
 Attributes:
     isostasy:        Airy
     density_crust:   2800.0
     density_mantle:  3300.0
     density_water:   1030
-&lt;IPython.core.display.Image object&gt;
 </pre></div>
 </div>
 <div class="line-block">
@@ -734,7 +758,7 @@ Attributes:
 <a href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.show.html#pygmt.Figure.show" title="pygmt.Figure.show" class="sphx-glr-backref-module-pygmt sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.527 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.390 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-isostatic-moho-airy-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d31cb5e6dcc906b4ba38f3bccffc3d93/isostatic_moho_airy.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">isostatic_moho_airy.py</span></code></a></p>
@@ -774,7 +798,7 @@ Attributes:
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

@@ -236,6 +236,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -417,6 +422,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -457,8 +477,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -694,7 +719,7 @@ the <em>easting</em>, <em>northing</em> and <em>upward</em> coordinates are give
 height:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
 
 <span class="c1"># Define boundaries of the rectangular prism (in meters)</span>
 <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span>
@@ -709,7 +734,7 @@ height:</p>
 <p>Or a regular grid of points at 100 meters above the zeroth plane:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a regular grid of observation points (coordinates in meters)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a regular grid of observation points (coordinates in meters)</span>
 <span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mi">100</span>
 <span class="p">)</span>
@@ -745,7 +770,7 @@ upward: [[100. 100. 100. 100. 100.]
 if a given point is lower or higher than another one:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define two points</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define two points</span>
 <span class="n">point_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">67</span><span class="p">)</span>
 <span class="n">point_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">58</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Point 1 is higher than point 2?&quot;</span><span class="p">,</span> <span class="n">point_1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">point_2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -789,10 +814,10 @@ that live inside it.
 Spatial data are usually given in geodetic coordinates, along with the
 reference ellipsoid on which they are defined.</p>
 <p>For example, let’s define a regular grid of points (separated by equal
-angles) at 2km above the ellipsoid using <a class="reference external" href="https://www.fatiando.org/verde/latest/api/index.html#module-verde" title="(in Verde vv1.7.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">verde</span></code></a>.</p>
+angles) at 2km above the ellipsoid using <a class="reference external" href="https://www.fatiando.org/verde/latest/api/index.html#module-verde" title="(in Verde vv1.8.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">verde</span></code></a>.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">65</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mf">2e3</span>
 <span class="p">)</span>
 <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[:]</span>
@@ -833,7 +858,7 @@ ellipsoid.</p>
 <p>Lets define the WGS84 ellipsoide using <a class="reference external" href="https://www.fatiando.org/boule/latest/api/index.html#module-boule" title="(in Boule vv0.4.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">boule</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
 
 <span class="n">ellipsoid</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ellipsoid</span><span class="p">)</span>
@@ -853,7 +878,7 @@ map <strong>projections</strong>. This can be done through <code class="xref py 
 previously generated grid using a Mercator projection:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyproj</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyproj</span>
 
 <span class="c1"># Define a Mercator projection through pyproj</span>
 <span class="n">projection</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Proj</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="s2">&quot;merc&quot;</span><span class="p">,</span> <span class="n">ellps</span><span class="o">=</span><span class="s2">&quot;WGS84&quot;</span><span class="p">)</span>
@@ -936,7 +961,7 @@ origin is located in the center of the Earth.</p>
 the same radius equal to the <em>mean radius of the Earth</em>.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">65</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">),</span>
     <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
     <span class="n">extra_coords</span><span class="o">=</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_radius</span><span class="p">,</span>
@@ -981,7 +1006,7 @@ radius: [[6371008.77141506 6371008.77141506 6371008.77141506 6371008.77141506
 <a class="reference external" href="https://www.fatiando.org/boule/latest/api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_geodetic" title="(in Boule vv0.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.spherical_to_geodetic</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_geodetic</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">spherical_to_geodetic</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_geodetic</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">spherical_to_geodetic</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates</span><span class="p">)</span>
 <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates_geodetic</span><span class="p">[:]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;longitude:&quot;</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;latitude:&quot;</span><span class="p">,</span> <span class="n">latitude</span><span class="p">)</span>
@@ -1028,7 +1053,7 @@ height: [[  -69.07752705   -69.07752705   -69.07752705   -69.07752705
 carried out through <a class="reference external" href="https://www.fatiando.org/boule/latest/api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical" title="(in Boule vv0.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.geodetic_to_spherical</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_spherical</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">geodetic_to_spherical</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates_geodetic</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_spherical</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">geodetic_to_spherical</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates_geodetic</span><span class="p">)</span>
 <span class="n">longitude</span><span class="p">,</span> <span class="n">sph_latitude</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">coordinates_spherical</span><span class="p">[:]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;longitude:&quot;</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spherical latitude:&quot;</span><span class="p">,</span> <span class="n">sph_latitude</span><span class="p">)</span>
@@ -1065,6 +1090,27 @@ radius: [[6371008.77141506 6371008.77141506 6371008.77141506 6371008.77141506
 </div>
 </div>
 </div>
+<hr class="docutils" />
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../_downloads/33c96c17c4b09ca1f637d6b9661966f8/coordinate_systems.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">script</span></code></a></div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../_downloads/1aa7ec4ea431c92475ac3042953b3894/coordinate_systems.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook</span></code></a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -1096,7 +1142,7 @@ radius: [[6371008.77141506 6371008.77141506 6371008.77141506 6371008.77141506
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

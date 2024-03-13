@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -701,7 +726,7 @@
 <span id="install"></span><h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="which-python">
 <h2>Which Python?<a class="headerlink" href="#which-python" title="Permalink to this headline">¶</a></h2>
-<p>You’ll need <strong>Python 3.7 or greater</strong>.
+<p>You’ll need <strong>Python 3.8 or greater</strong>.
 See <a class="reference internal" href="compatibility.html#python-versions"><span class="std std-ref">Supported Python versions</span></a> if you require support for older versions.</p>
 <p>We recommend using the
 <a class="reference external" href="https://www.anaconda.com/download">Anaconda Python distribution</a>
@@ -747,7 +772,6 @@ See <a class="reference internal" href="api/generated/harmonica.prism_gravity.ht
 <li><p><a class="reference external" href="http://www.fatiando.org/ensaio/">ensaio</a> for downloading sample datasets</p></li>
 <li><p><a class="reference external" href="https://www.pygmt.org/">pygmt</a> for plotting maps</p></li>
 <li><p><a class="reference external" href="https://jswhit.github.io/pyproj/">pyproj</a> for cartographic projections</p></li>
-<li><p><a class="reference external" href="https://www.fatiando.org/ensaio">ensaio</a> for downloading sample datasets</p></li>
 </ul>
 </div>
 <div class="section" id="installing-with-conda">
@@ -767,7 +791,7 @@ See <a class="reference internal" href="api/generated/harmonica.prism_gravity.ht
 <div class="section" id="installing-the-latest-development-version">
 <h2>Installing the latest development version<a class="headerlink" href="#installing-the-latest-development-version" title="Permalink to this headline">¶</a></h2>
 <p>You can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the latest source from Github:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fatiando</span><span class="o">/</span><span class="n">harmonica</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">zip</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fatiando</span><span class="o">/</span><span class="n">harmonica</span>
 </pre></div>
 </div>
 <p>Alternatively, you can clone the git repository locally and install from
@@ -823,7 +847,7 @@ a Python interpreter:</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

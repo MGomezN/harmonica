@@ -236,6 +236,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -417,6 +422,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -457,8 +477,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -628,7 +653,7 @@
 <dt class="sig sig-object py" id="harmonica.filters.derivative_easting_kernel">
 <span class="sig-prename descclassname"><span class="pre">harmonica.filters.</span></span><span class="sig-name descname"><span class="pre">derivative_easting_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fft_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/harmonica/filters/_filters.html#derivative_easting_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#harmonica.filters.derivative_easting_kernel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter for easting derivative in frequency domain</p>
-<p>Return a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> with the values of the frequency domain
+<p>Return a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> with the values of the frequency domain
 filter for computing the easting derivative. The filter is built upon the
 frequency coordinates of the passed <code class="docutils literal notranslate"><span class="pre">fft_grid</span></code> and is defined as follows:</p>
 <div class="math notranslate nohighlight">
@@ -641,16 +666,16 @@ order of the derivative.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fft_grid</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>) – Array with the Fourier transform of the original grid.
+<li><p><strong>fft_grid</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>) – Array with the Fourier transform of the original grid.
 Its dimensions should be in the following order:
 <em>freq_northing</em>, <em>freq_easting</em>.
 Use <a class="reference external" href="https://xrft.readthedocs.io/en/stable/api.html#xrft.xrft.fft" title="(in xrft v0.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xrft.xrft.fft</span></code></a> and <a class="reference external" href="https://xrft.readthedocs.io/en/stable/api.html#xrft.xrft.ifft" title="(in xrft v0.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xrft.xrft.ifft</span></code></a> functions to
 compute the Fourier Transform and its inverse, respectively.</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The order of the derivative. Default to 1.</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The order of the derivative. Default to 1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>da_filter</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>) – Array with the kernel for the easting derivative filter in frequency
+<dd class="field-even"><p><strong>da_filter</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>) – Array with the kernel for the easting derivative filter in frequency
 domain.</p>
 </dd>
 </dl>
@@ -692,7 +717,7 @@ domain.</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

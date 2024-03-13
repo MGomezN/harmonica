@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -641,20 +666,19 @@ In addition, we need to decorate the density function with
 four tesseroids whose densities are given by a custom linear <code class="docutils literal notranslate"><span class="pre">density</span></code>
 function.</p>
 <img src="../../_images/sphx_glr_tesseroid_variable_density_001.png" srcset="../../_images/sphx_glr_tesseroid_variable_density_001.png" alt="tesseroid variable density" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[15.64931026 15.84632554 16.04629019 ... 17.73106017 17.50445005
-  17.28024265]
- [15.93321711 16.14345748 16.35722954 ... 18.16928493 17.9230556
-  17.68001566]
- [16.2246854  16.4491229  16.6777669  ... 18.62722145 18.3593706
-  18.09566506]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[[15.65235898 15.84941264 16.04941625 ... 17.73451444 17.50786018
+  17.2836091 ]
+ [15.93632114 16.14660247 16.36041617 ... 18.17282458 17.92654728
+  17.68345999]
+ [16.22784621 16.45232743 16.68101597 ... 18.63085032 18.36294728
+  18.09919036]
  ...
- [15.52398623 15.81724318 16.12003228 ... 18.50055111 18.12075672
-  17.75302149]
- [15.24656009 15.52448978 15.8108793  ... 18.06017674 17.705425
-  17.36104098]
- [14.97689905 15.24046063 15.51153133 ... 17.6376896  17.30600261
-  16.98321625]]
-&lt;IPython.core.display.Image object&gt;
+ [15.52701053 15.82032461 16.1231727  ... 18.50415529 18.12428691
+  17.75648004]
+ [15.24953035 15.52751418 15.81395949 ... 18.06369513 17.70887428
+  17.36442317]
+ [14.97981677 15.2434297  15.51455321 ... 17.64112568 17.30937408
+  16.98652484]]
 </pre></div>
 </div>
 <div class="line-block">
@@ -732,7 +756,7 @@ function.</p>
 <a href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.show.html#pygmt.Figure.show" title="pygmt.Figure.show" class="sphx-glr-backref-module-pygmt sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.583 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.348 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-forward-tesseroid-variable-density-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/b3b947fe5d6393649c5ece373bb64a1a/tesseroid_variable_density.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tesseroid_variable_density.py</span></code></a></p>
@@ -772,7 +796,7 @@ function.</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

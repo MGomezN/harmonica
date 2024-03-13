@@ -129,11 +129,39 @@ harmonica.EquivalentSources
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         EquivalentSources.filter
     
     
     
         EquivalentSources.fit
+    
+    
+    
+        EquivalentSources.get_metadata_routing
     
     
     
@@ -165,7 +193,19 @@ harmonica.EquivalentSources
     
     
     
+        EquivalentSources.set_fit_request
+    
+    
+    
         EquivalentSources.set_params
+    
+    
+    
+        EquivalentSources.set_predict_request
+    
+    
+    
+        EquivalentSources.set_score_request
     
     
 
@@ -180,6 +220,10 @@ harmonica.EquivalentSources
 
 
 .. automethod:: EquivalentSources.fit
+
+
+
+.. automethod:: EquivalentSources.get_metadata_routing
 
 
 
@@ -211,7 +255,19 @@ harmonica.EquivalentSources
 
 
 
+.. automethod:: EquivalentSources.set_fit_request
+
+
+
 .. automethod:: EquivalentSources.set_params
+
+
+
+.. automethod:: EquivalentSources.set_predict_request
+
+
+
+.. automethod:: EquivalentSources.set_score_request
 
 
 

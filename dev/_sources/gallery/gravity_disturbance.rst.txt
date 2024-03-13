@@ -44,16 +44,15 @@ data.
 
  .. code-block:: none
 
-    <xarray.Dataset>
+    <xarray.Dataset> Size: 19MB
     Dimensions:    (longitude: 2161, latitude: 1081)
     Coordinates:
-      * longitude  (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-      * latitude   (latitude) float64 -90.0 -89.83 -89.67 -89.5 ... 89.67 89.83 90.0
-        height     (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04
+      * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+      * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+        height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04
     Data variables:
-        gravity    (latitude, longitude) float32 9.801e+05 9.801e+05 ... 9.802e+05
+        gravity    (latitude, longitude) float32 9MB 9.801e+05 ... 9.802e+05
     grdimage [WARNING]: Longitude range too small; geographic boundary condition changed to natural.
-    <IPython.core.display.Image object>
 
 
 
@@ -105,7 +104,7 @@ data.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.685 seconds)
+   **Total running time of the script:** ( 0 minutes  6.413 seconds)
 
 
 .. _sphx_glr_download_gallery_gravity_disturbance.py:

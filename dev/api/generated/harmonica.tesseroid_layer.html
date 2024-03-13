@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -666,7 +691,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>coordinates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a>) – List containing the coordinates of the centers of the tesseroids in
+<li><p><strong>coordinates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a>) – List containing the coordinates of the centers of the tesseroids in
 spherical coordinates in the following order <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and
 <code class="docutils literal notranslate"><span class="pre">latitude</span></code>.</p></li>
 <li><p><strong>surface</strong> (<em>2d-array</em>) – Array used to create the uppermost boundary of the tesserois layer. All
@@ -674,19 +699,19 @@ radii should be in meters. On every point where <code class="docutils literal no
 <code class="docutils literal notranslate"><span class="pre">reference</span></code>, the <code class="docutils literal notranslate"><span class="pre">surface</span></code> value will be used to set the <code class="docutils literal notranslate"><span class="pre">bottom</span></code>
 boundary of that tesseroid, while the <code class="docutils literal notranslate"><span class="pre">reference</span></code> value will be used
 to set the <code class="docutils literal notranslate"><span class="pre">top</span></code> boundary of the tesseroid.</p></li>
-<li><p><strong>reference</strong> (<em>2d-array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Reference surface used to create the lowermost boundary of the
+<li><p><strong>reference</strong> (<em>2d-array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Reference surface used to create the lowermost boundary of the
 tesseroids layer. It can be either a plane or an irregular surface
 passed as 2d array. Radii must be in meters.</p></li>
-<li><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em> or </em><em>None</em>) – Dictionary containing the physical properties of the tesseroids. The
+<li><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em> or </em><em>None</em>) – Dictionary containing the physical properties of the tesseroids. The
 keys must be strings that will be used to name the corresponding
-<code class="docutils literal notranslate"><span class="pre">data_var</span></code> inside the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>, while the values must
+<code class="docutils literal notranslate"><span class="pre">data_var</span></code> inside the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>, while the values must
 be 2d-arrays. All physical properties must be passed in SI units. If
-None, no <code class="docutils literal notranslate"><span class="pre">data_var</span></code> will be added to the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>.
+None, no <code class="docutils literal notranslate"><span class="pre">data_var</span></code> will be added to the <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>.
 Default is None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>dataset</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>) – Dataset containing the coordinates of the center of each tesseroid, the
+<dd class="field-even"><p><strong>dataset</strong> (<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>) – Dataset containing the coordinates of the center of each tesseroid, the
 height of its top and bottom boundaries ans its corresponding physical
 properties.</p>
 </dd>
@@ -734,7 +759,7 @@ properties.</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

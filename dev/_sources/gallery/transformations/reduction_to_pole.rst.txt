@@ -39,7 +39,7 @@ Reduction to the pole of a magnetic anomaly grid
 
 
     Reduced to the pole magnetic grid:
-     <xarray.DataArray (northing: 370, easting: 346)>
+     <xarray.DataArray (northing: 370, easting: 346)> Size: 1MB
     array([[  14.15556282,   10.38429905,   10.02003492, ..., -219.81018247,
             -210.93025635, -179.38408421],
            [  -3.21243279,   -9.37121782,  -10.96584477, ..., -165.15303656,
@@ -54,9 +54,8 @@ Reduction to the pole of a magnetic anomaly grid
            [-102.42457874, -155.67864799, -165.96649111, ...,  -36.95819436,
              -35.04014832,  -40.15060688]])
     Coordinates:
-      * northing  (northing) float64 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
-      * easting   (easting) float64 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
-    <IPython.core.display.Image object>
+      * easting   (easting) float64 3kB 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
+      * northing  (northing) float64 3kB 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
 
 
 
@@ -138,7 +137,7 @@ Reduction to the pole of a magnetic anomaly grid
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.404 seconds)
+   **Total running time of the script:** ( 0 minutes  4.598 seconds)
 
 
 .. _sphx_glr_download_gallery_transformations_reduction_to_pole.py:

@@ -54,16 +54,16 @@ isostatic Moho depth of Africa.
  .. code-block:: none
 
     Topography/bathymetry grid:
-    <xarray.Dataset>
+    <xarray.Dataset> Size: 991kB
     Dimensions:     (longitude: 481, latitude: 511)
     Coordinates:
-      * longitude   (longitude) float64 -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
-      * latitude    (latitude) float64 -40.0 -39.83 -39.67 ... 44.67 44.83 45.0
+      * longitude   (longitude) float64 4kB -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
+      * latitude    (latitude) float64 4kB -40.0 -39.83 -39.67 ... 44.67 44.83 45.0
     Data variables:
-        topography  (latitude, longitude) float32 -3.528e+03 -3.51e+03 ... 31.0 33.0
+        topography  (latitude, longitude) float32 983kB -3.528e+03 ... 33.0
 
     Moho depth grid:
-    <xarray.DataArray 'moho_depth' (latitude: 511, longitude: 481)>
+    <xarray.DataArray 'moho_depth' (latitude: 511, longitude: 481)> Size: 983kB
     array([[17510.88  , 17574.602 , 17712.66  , ..., 11715.9   , 11602.619 ,
             11443.32  ],
            [17833.02  , 17942.76  , 18165.781 , ..., 11609.699 , 11581.381 ,
@@ -78,14 +78,13 @@ isostatic Moho depth of Africa.
            [15362.101 , 15517.86  , 15252.359 , ..., 30151.2   , 30173.6   ,
             30184.8   ]], dtype=float32)
     Coordinates:
-      * longitude  (longitude) float64 -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
-      * latitude   (latitude) float64 -40.0 -39.83 -39.67 -39.5 ... 44.67 44.83 45.0
+      * longitude  (longitude) float64 4kB -20.0 -19.83 -19.67 ... 59.67 59.83 60.0
+      * latitude   (latitude) float64 4kB -40.0 -39.83 -39.67 ... 44.67 44.83 45.0
     Attributes:
         isostasy:        Airy
         density_crust:   2800.0
         density_mantle:  3300.0
         density_water:   1030
-    <IPython.core.display.Image object>
 
 
 
@@ -151,7 +150,7 @@ isostatic Moho depth of Africa.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.527 seconds)
+   **Total running time of the script:** ( 0 minutes  0.390 seconds)
 
 
 .. _sphx_glr_download_gallery_isostatic_moho_airy.py:

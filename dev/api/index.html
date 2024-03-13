@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -632,6 +657,8 @@
   <a class="reference internal nav-link" href="#forward-modelling">
    Forward modelling
   </a>
+  <ul class="nav section-nav flex-column">
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#isostatic-moho">
@@ -697,6 +724,8 @@
   <a class="reference internal nav-link" href="#forward-modelling">
    Forward modelling
   </a>
+  <ul class="nav section-nav flex-column">
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#isostatic-moho">
@@ -810,7 +839,7 @@
 </tbody>
 </table>
 <p>Use <a class="reference external" href="https://xrft.readthedocs.io/en/stable/api.html#xrft.xrft.fft" title="(in xrft v0.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xrft.xrft.fft</span></code></a> and <a class="reference external" href="https://xrft.readthedocs.io/en/stable/api.html#xrft.xrft.ifft" title="(in xrft v0.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">xrft.xrft.ifft</span></code></a> to apply Fast-Fourier
-Transforms and its inverse on <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>.</p>
+Transforms and its inverse on <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>.</p>
 </div>
 <div class="section" id="equivalent-sources">
 <h2>Equivalent Sources<a class="headerlink" href="#equivalent-sources" title="Permalink to this headline">¶</a></h2>
@@ -834,6 +863,7 @@ Transforms and its inverse on <a class="reference external" href="https://docs.x
 </div>
 <div class="section" id="forward-modelling">
 <h2>Forward modelling<a class="headerlink" href="#forward-modelling" title="Permalink to this headline">¶</a></h2>
+<p>Gravity fields:</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -849,16 +879,43 @@ Transforms and its inverse on <a class="reference external" href="https://docs.x
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.tesseroid_gravity.html#harmonica.tesseroid_gravity" title="harmonica.tesseroid_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tesseroid_gravity</span></code></a>(coordinates, tesseroids, ...)</p></td>
 <td><p>Compute gravitational field of tesseroids on computation points.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/harmonica.prism_layer.html#harmonica.prism_layer" title="harmonica.prism_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prism_layer</span></code></a>(coordinates, surface, reference)</p></td>
+</tbody>
+</table>
+<p>Magnetic fields:</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.dipole_magnetic.html#harmonica.dipole_magnetic" title="harmonica.dipole_magnetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dipole_magnetic</span></code></a>(coordinates, dipoles, ...[, ...])</p></td>
+<td><p>Magnetic field of dipoles in Cartesian coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/harmonica.dipole_magnetic_component.html#harmonica.dipole_magnetic_component" title="harmonica.dipole_magnetic_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dipole_magnetic_component</span></code></a>(coordinates, ...)</p></td>
+<td><p>Single magnetic field component of dipoles in Cartesian coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.prism_magnetic.html#harmonica.prism_magnetic" title="harmonica.prism_magnetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prism_magnetic</span></code></a>(coordinates, prisms, ...[, ...])</p></td>
+<td><p>Magnetic field of right-rectangular prisms in Cartesian coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<p>Layers and meshes:</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.prism_layer.html#harmonica.prism_layer" title="harmonica.prism_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prism_layer</span></code></a>(coordinates, surface, reference)</p></td>
 <td><p>Create a layer of prisms of equal size</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.tesseroid_layer.html#harmonica.tesseroid_layer" title="harmonica.tesseroid_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tesseroid_layer</span></code></a>(coordinates, surface, reference)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/harmonica.tesseroid_layer.html#harmonica.tesseroid_layer" title="harmonica.tesseroid_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tesseroid_layer</span></code></a>(coordinates, surface, reference)</p></td>
 <td><p>Create a layer of tesseroids of equal size</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/harmonica.DatasetAccessorPrismLayer.html#harmonica.DatasetAccessorPrismLayer" title="harmonica.DatasetAccessorPrismLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetAccessorPrismLayer</span></code></a>(xarray_obj)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.DatasetAccessorPrismLayer.html#harmonica.DatasetAccessorPrismLayer" title="harmonica.DatasetAccessorPrismLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetAccessorPrismLayer</span></code></a>(xarray_obj)</p></td>
 <td><p>Defines dataset accessor for layer of prisms</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.DatasetAccessorTesseroidLayer.html#harmonica.DatasetAccessorTesseroidLayer" title="harmonica.DatasetAccessorTesseroidLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetAccessorTesseroidLayer</span></code></a>(xarray_obj)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/harmonica.DatasetAccessorTesseroidLayer.html#harmonica.DatasetAccessorTesseroidLayer" title="harmonica.DatasetAccessorTesseroidLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetAccessorTesseroidLayer</span></code></a>(xarray_obj)</p></td>
 <td><p>Define dataset accessor for layer of tesseroids</p></td>
 </tr>
 </tbody>
@@ -904,7 +961,7 @@ Transforms and its inverse on <a class="reference external" href="https://docs.x
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.visualization.prism_to_pyvista.html#harmonica.visualization.prism_to_pyvista" title="harmonica.visualization.prism_to_pyvista"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.prism_to_pyvista</span></code></a>(prisms[, ...])</p></td>
-<td><p>Create a <a class="reference external" href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="(in PyVista v0.38.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.UnstructuredGrid</span></code></a> out of prisms</p></td>
+<td><p>Create a <a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="(in PyVista v0.43.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.UnstructuredGrid</span></code></a> out of prisms</p></td>
 </tr>
 </tbody>
 </table>
@@ -917,8 +974,11 @@ Transforms and its inverse on <a class="reference external" href="https://docs.x
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.test.html#harmonica.test" title="harmonica.test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test</span></code></a>([doctest, verbose, coverage, figures])</p></td>
-<td><p>Run the test suite.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/harmonica.magnetic_vec_to_angles.html#harmonica.magnetic_vec_to_angles" title="harmonica.magnetic_vec_to_angles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnetic_vec_to_angles</span></code></a>(magnetic_e, ...[, ...])</p></td>
+<td><p>Convert magnetic field vector to magnetic field angles</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/harmonica.magnetic_angles_to_vec.html#harmonica.magnetic_angles_to_vec" title="harmonica.magnetic_angles_to_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnetic_angles_to_vec</span></code></a>(intensity, ...)</p></td>
+<td><p>Convert magnetic field angles to magnetic field vector</p></td>
 </tr>
 </tbody>
 </table>
@@ -953,7 +1013,7 @@ Transforms and its inverse on <a class="reference external" href="https://docs.x
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

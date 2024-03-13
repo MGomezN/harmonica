@@ -54,16 +54,16 @@ correction.
 
  .. code-block:: none
 
-    <xarray.Dataset>
+    <xarray.Dataset> Size: 37MB
     Dimensions:     (longitude: 2161, latitude: 1081)
     Coordinates:
-      * longitude   (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-      * latitude    (latitude) float64 -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
-        height      (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04
+      * longitude   (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+      * latitude    (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+        height      (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04
     Data variables:
-        gravity     (latitude, longitude) float32 9.801e+05 9.801e+05 ... 9.802e+05
-        geoid       (latitude, longitude) float32 -29.5 -29.5 -29.5 ... 15.4 15.4
-        topography  (latitude, longitude) float32 2.742e+03 2.742e+03 ... -4.237e+03
+        gravity     (latitude, longitude) float32 9MB 9.801e+05 ... 9.802e+05
+        geoid       (latitude, longitude) float32 9MB -29.5 -29.5 ... 15.4 15.4
+        topography  (latitude, longitude) float32 9MB 2.742e+03 ... -4.237e+03
     Attributes:
         Conventions:     CF-1.8
         title:           Gravity acceleration (EIGEN-6C4) at a constant geometric...
@@ -77,7 +77,6 @@ correction.
         actual_range:    [974748.6 980201.9]
         icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...
     grdimage [WARNING]: Longitude range too small; geographic boundary condition changed to natural.
-    <IPython.core.display.Image object>
 
 
 
@@ -124,7 +123,7 @@ correction.
     # Make a plot of data using PyGMT
     fig = pygmt.Figure()
 
-    pygmt.grd2cpt(grid=disturbance_topofree, cmap="vik", continuous=True)
+    pygmt.grd2cpt(grid=disturbance_topofree, cmap="vik+h0", continuous=True)
 
     title = "Topography-free (Bouguer) gravity disturbance of the Earth"
 
@@ -146,7 +145,7 @@ correction.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  22.413 seconds)
+   **Total running time of the script:** ( 0 minutes  10.700 seconds)
 
 
 .. _sphx_glr_download_gallery_gravity_disturbance_topofree.py:

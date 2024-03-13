@@ -89,19 +89,19 @@ plot using ``pyvista``.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-    <table><tr><th>Header</th><th>Data Arrays</th></tr><tr><td>
-    <table>
+    <table style='width: 100%;'><tr><th>Header</th><th>Data Arrays</th></tr><tr><td>
+    <table style='width: 100%;'>
     <tr><th>UnstructuredGrid</th><th>Information</th></tr>
-    <tr><td>N Cells</td><td>1620522</td></tr>
-    <tr><td>N Points</td><td>12964176</td></tr>
-    <tr><td>X Bounds</td><td>1.091e+06, 3.375e+06</td></tr>
-    <tr><td>Y Bounds</td><td>-3.841e+06, -1.642e+06</td></tr>
+    <tr><td>N Cells</td><td>1617967</td></tr>
+    <tr><td>N Points</td><td>12943736</td></tr>
+    <tr><td>X Bounds</td><td>1.092e+06, 3.375e+06</td></tr>
+    <tr><td>Y Bounds</td><td>-3.841e+06, -1.644e+06</td></tr>
     <tr><td>Z Bounds</td><td>-5.634e+03, 3.358e+03</td></tr>
     <tr><td>N Arrays</td><td>1</td></tr>
     </table>
 
     </td><td>
-    <table>
+    <table style='width: 100%;'>
     <tr><th>Name</th><th>Field</th><th>Type</th><th>N Comp</th><th>Min</th><th>Max</th></tr>
     <tr><td><b>density</b></td><td>Cells</td><td>float64</td><td>1</td><td>-1.900e+03</td><td>2.670e+03</td></tr>
     </table>
@@ -154,7 +154,7 @@ plot using ``pyvista``.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  6.349 seconds)
+   **Total running time of the script:** ( 2 minutes  25.311 seconds)
 
 
 .. _sphx_glr_download_gallery_visualization_prism_layer_pyvista.py:

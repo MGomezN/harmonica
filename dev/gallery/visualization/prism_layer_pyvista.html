@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -630,7 +655,7 @@ to download the full example code</p>
 <span id="sphx-glr-gallery-visualization-prism-layer-pyvista-py"></span><h1>Plot a prism layer in 3D<a class="headerlink" href="#plot-a-prism-layer-in-3d" title="Permalink to this headline">¶</a></h1>
 <p>The <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html#harmonica.prism_layer" title="harmonica.prism_layer"><code class="xref py py-func docutils literal notranslate"><span class="pre">harmonica.prism_layer</span></code></a> allows to easily create a layer of prisms
 whose top and bottom boundaries might drape a certain surface, like topography,
-bathymetry or the Moho discontinuity. It returns a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>
+bathymetry or the Moho discontinuity. It returns a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>
 object with the horizontal coordinates of the center of each prism, their top
 and bottom boundaries and their physical properties, like their density.
 Through the <code class="docutils literal notranslate"><span class="pre">prism_layer</span></code> accessor (see
@@ -640,7 +665,7 @@ prism layer. For example, the
 gravitational fields of the layer on any set of observation points.
 Another interesting method is the
 <a class="reference internal" href="../../api/generated/harmonica.DatasetAccessorPrismLayer.html#harmonica.DatasetAccessorPrismLayer.to_pyvista" title="harmonica.DatasetAccessorPrismLayer.to_pyvista"><code class="xref py py-meth docutils literal notranslate"><span class="pre">harmonica.DatasetAccessorPrismLayer.to_pyvista</span></code></a>: it converts the prism
-layer into a <a class="reference external" href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="(in PyVista v0.38.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.UnstructuredGrid</span></code></a> that could be easily plotted
+layer into a <a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="(in PyVista v0.43.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.UnstructuredGrid</span></code></a> that could be easily plotted
 through <code class="docutils literal notranslate"><span class="pre">pyvista</span></code>.</p>
 <p>In this example we will show how we can build a prism layer out of a topography
 and bathymetry grid for South Africa and how we can visualize the layer as a 3D
@@ -679,24 +704,24 @@ plot using <code class="docutils literal notranslate"><span class="pre">pyvista<
 <span class="p">)</span>
 
 <span class="c1"># Create a pyvista UnstructuredGrid from the prism layer</span>
-<a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pv_grid</span></a> <span class="o">=</span> <a href="../../api/generated/harmonica.DatasetAccessorPrismLayer.html#harmonica.DatasetAccessorPrismLayer.to_pyvista" title="harmonica.DatasetAccessorPrismLayer.to_pyvista" class="sphx-glr-backref-module-harmonica sphx-glr-backref-type-py-method"><span class="n">prisms</span><span class="o">.</span><span class="n">prism_layer</span><span class="o">.</span><span class="n">to_pyvista</span></a><span class="p">()</span>
-<a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pv_grid</span></a>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pv_grid</span></a> <span class="o">=</span> <a href="../../api/generated/harmonica.DatasetAccessorPrismLayer.html#harmonica.DatasetAccessorPrismLayer.to_pyvista" title="harmonica.DatasetAccessorPrismLayer.to_pyvista" class="sphx-glr-backref-module-harmonica sphx-glr-backref-type-py-method"><span class="n">prisms</span><span class="o">.</span><span class="n">prism_layer</span><span class="o">.</span><span class="n">to_pyvista</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pv_grid</span></a>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-<table><tr><th>Header</th><th>Data Arrays</th></tr><tr><td>
-<table>
+<table style='width: 100%;'><tr><th>Header</th><th>Data Arrays</th></tr><tr><td>
+<table style='width: 100%;'>
 <tr><th>UnstructuredGrid</th><th>Information</th></tr>
-<tr><td>N Cells</td><td>1620522</td></tr>
-<tr><td>N Points</td><td>12964176</td></tr>
-<tr><td>X Bounds</td><td>1.091e+06, 3.375e+06</td></tr>
-<tr><td>Y Bounds</td><td>-3.841e+06, -1.642e+06</td></tr>
+<tr><td>N Cells</td><td>1617967</td></tr>
+<tr><td>N Points</td><td>12943736</td></tr>
+<tr><td>X Bounds</td><td>1.092e+06, 3.375e+06</td></tr>
+<tr><td>Y Bounds</td><td>-3.841e+06, -1.644e+06</td></tr>
 <tr><td>Z Bounds</td><td>-5.634e+03, 3.358e+03</td></tr>
 <tr><td>N Arrays</td><td>1</td></tr>
 </table>
 
 </td><td>
-<table>
+<table style='width: 100%;'>
 <tr><th>Name</th><th>Field</th><th>Type</th><th>N Comp</th><th>Min</th><th>Max</th></tr>
 <tr><td><b>density</b></td><td>Cells</td><td>float64</td><td>1</td><td>-1.900e+03</td><td>2.670e+03</td></tr>
 </table>
@@ -705,31 +730,31 @@ plot using <code class="docutils literal notranslate"><span class="pre">pyvista<
 </div>
 <br />
 <br /><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot with pyvista</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span></a><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="s2">&quot;three_lights&quot;</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">800</span><span class="p">))</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.add_mesh.html#pyvista.BasePlotter.add_mesh" title="pyvista.BasePlotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pv_grid</span></a><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.set_scale.html#pyvista.BasePlotter.set_scale" title="pyvista.BasePlotter.set_scale" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">set_scale</span></a><span class="p">(</span><span class="n">zscale</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>  <span class="c1"># exaggerate the vertical coordinate</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.camera_position.html#pyvista.BasePlotter.camera_position" title="pyvista.BasePlotter.camera_position" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera_position</span></a> <span class="o">=</span> <span class="s2">&quot;xz&quot;</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.camera.html#pyvista.BasePlotter.camera" title="pyvista.BasePlotter.camera" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">elevation</span></a> <span class="o">=</span> <span class="mi">20</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.camera.html#pyvista.BasePlotter.camera" title="pyvista.BasePlotter.camera" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">azimuth</span></a> <span class="o">=</span> <span class="mi">35</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.camera.html#pyvista.BasePlotter.camera" title="pyvista.BasePlotter.camera" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span></a><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span></a><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="s2">&quot;three_lights&quot;</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">800</span><span class="p">))</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pv_grid</span></a><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.set_scale.html#pyvista.Plotter.set_scale" title="pyvista.Plotter.set_scale" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">set_scale</span></a><span class="p">(</span><span class="n">zscale</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>  <span class="c1"># exaggerate the vertical coordinate</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.camera_position.html#pyvista.Plotter.camera_position" title="pyvista.Plotter.camera_position" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera_position</span></a> <span class="o">=</span> <span class="s2">&quot;xz&quot;</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.camera.html#pyvista.Plotter.camera" title="pyvista.Plotter.camera" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">elevation</span></a> <span class="o">=</span> <span class="mi">20</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.camera.html#pyvista.Plotter.camera" title="pyvista.Plotter.camera" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">azimuth</span></a> <span class="o">=</span> <span class="mi">35</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.camera.html#pyvista.Plotter.camera" title="pyvista.Plotter.camera" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">plotter</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span></a><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
 
 <span class="c1"># Add a ceiling light</span>
 <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">west</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">east</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">south</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">north</span></a> <span class="o">=</span> <a href="https://www.fatiando.org/verde/latest/api/generated/verde.get_region.html#verde.get_region" title="verde.get_region" class="sphx-glr-backref-module-verde sphx-glr-backref-type-py-function"><span class="n">vd</span><span class="o">.</span><span class="n">get_region</span></a><span class="p">((</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">prisms</span><span class="o">.</span><span class="n">easting</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">prisms</span><span class="o">.</span><span class="n">northing</span></a><span class="p">))</span>
 <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">easting_center</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">northing_center</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">east</span></a> <span class="o">+</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">west</span></a><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">north</span></a> <span class="o">+</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">south</span></a><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-<a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.Light.html#pyvista.Light" title="pyvista.Light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">light</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.Light.html#pyvista.Light" title="pyvista.Light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pv</span><span class="o">.</span><span class="n">Light</span></a><span class="p">(</span>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.Light.html#pyvista.Light" title="pyvista.Light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">light</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.Light.html#pyvista.Light" title="pyvista.Light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pv</span><span class="o">.</span><span class="n">Light</span></a><span class="p">(</span>
     <span class="n">position</span><span class="o">=</span><span class="p">(</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">easting_center</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">northing_center</span></a><span class="p">,</span> <span class="mf">10e3</span><span class="p">),</span>
     <span class="n">focal_point</span><span class="o">=</span><span class="p">(</span><a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">easting_center</span></a><span class="p">,</span> <a href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="xarray.core.dataarray.DataArray" class="sphx-glr-backref-module-xarray-core-dataarray sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">northing_center</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="n">intensity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
     <span class="n">light_type</span><span class="o">=</span><span class="s2">&quot;scene light&quot;</span><span class="p">,</span>  <span class="c1"># the light doesn&#39;t move with the camera</span>
     <span class="n">positional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># the light comes from infinity</span>
 <span class="p">)</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.add_light.html#pyvista.BasePlotter.add_light" title="pyvista.BasePlotter.add_light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_light</span></a><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.Light.html#pyvista.Light" title="pyvista.Light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">light</span></a><span class="p">)</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.add_light.html#pyvista.Plotter.add_light" title="pyvista.Plotter.add_light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_light</span></a><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.Light.html#pyvista.Light" title="pyvista.Light" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">light</span></a><span class="p">)</span>
 
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.BasePlotter.show_axes.html#pyvista.BasePlotter.show_axes" title="pyvista.BasePlotter.show_axes" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show_axes</span></a><span class="p">()</span>
-<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show_axes.html#pyvista.Plotter.show_axes" title="pyvista.Plotter.show_axes" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show_axes</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_prism_layer_pyvista_001.png" srcset="../../_images/sphx_glr_prism_layer_pyvista_001.png" alt="prism layer pyvista" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  6.349 seconds)</p>
+<img src="../../_images/sphx_glr_prism_layer_pyvista_001.png" srcset="../../_images/sphx_glr_prism_layer_pyvista_001.png" alt="prism layer pyvista" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  25.311 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-visualization-prism-layer-pyvista-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3dff0b0239faa0722c1589d2f668aa86/prism_layer_pyvista.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">prism_layer_pyvista.py</span></code></a></p>
@@ -769,7 +794,7 @@ plot using <code class="docutils literal notranslate"><span class="pre">pyvista<
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

@@ -1,0 +1,12 @@
+harmonica.dipole\_magnetic\_component
+=====================================
+
+.. currentmodule:: harmonica
+
+.. autofunction:: dipole_magnetic_component
+
+.. include:: backreferences/harmonica.dipole_magnetic_component.examples
+
+.. raw:: html
+
+     <div style='clear:both'></div>

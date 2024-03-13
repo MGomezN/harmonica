@@ -39,7 +39,7 @@ Upward derivative of a regular grid
 
 
     Upward derivative:
-     <xarray.DataArray (northing: 370, easting: 346)>
+     <xarray.DataArray (northing: 370, easting: 346)> Size: 1MB
     array([[ 0.95819797,  0.62479631,  0.65249329, ..., -1.73446106,
             -1.67664073, -2.7243531 ],
            [ 0.63634155,  0.21904983,  0.23107703, ..., -0.49049877,
@@ -54,9 +54,8 @@ Upward derivative of a regular grid
            [ 5.04819984,  2.91262219,  2.80733139, ...,  0.11714946,
             -0.38706034, -1.26040298]])
     Coordinates:
-      * northing  (northing) float64 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
-      * easting   (easting) float64 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
-    <IPython.core.display.Image object>
+      * easting   (easting) float64 3kB 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
+      * northing  (northing) float64 3kB 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
 
 
 
@@ -133,7 +132,7 @@ Upward derivative of a regular grid
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.139 seconds)
+   **Total running time of the script:** ( 0 minutes  0.408 seconds)
 
 
 .. _sphx_glr_download_gallery_transformations_upward_derivative.py:

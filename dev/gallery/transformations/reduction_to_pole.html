@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -630,7 +655,7 @@ to download the full example code</p>
 <span id="sphx-glr-gallery-transformations-reduction-to-pole-py"></span><h1>Reduction to the pole of a magnetic anomaly grid<a class="headerlink" href="#reduction-to-the-pole-of-a-magnetic-anomaly-grid" title="Permalink to this headline">¶</a></h1>
 <img src="../../_images/sphx_glr_reduction_to_pole_001.png" srcset="../../_images/sphx_glr_reduction_to_pole_001.png" alt="reduction to pole" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Reduced to the pole magnetic grid:
- &lt;xarray.DataArray (northing: 370, easting: 346)&gt;
+ &lt;xarray.DataArray (northing: 370, easting: 346)&gt; Size: 1MB
 array([[  14.15556282,   10.38429905,   10.02003492, ..., -219.81018247,
         -210.93025635, -179.38408421],
        [  -3.21243279,   -9.37121782,  -10.96584477, ..., -165.15303656,
@@ -645,9 +670,8 @@ array([[  14.15556282,   10.38429905,   10.02003492, ..., -219.81018247,
        [-102.42457874, -155.67864799, -165.96649111, ...,  -36.95819436,
          -35.04014832,  -40.15060688]])
 Coordinates:
-  * northing  (northing) float64 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
-  * easting   (easting) float64 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
-&lt;IPython.core.display.Image object&gt;
+  * easting   (easting) float64 3kB 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
+  * northing  (northing) float64 3kB 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
 </pre></div>
 </div>
 <div class="line-block">
@@ -722,7 +746,7 @@ Coordinates:
 <a href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.show.html#pygmt.Figure.show" title="pygmt.Figure.show" class="sphx-glr-backref-module-pygmt sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.404 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.598 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-transformations-reduction-to-pole-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/e12db2fe91fbe504de02803c7af1706f/reduction_to_pole.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">reduction_to_pole.py</span></code></a></p>
@@ -762,7 +786,7 @@ Coordinates:
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

@@ -235,6 +235,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -630,7 +655,7 @@ to download the full example code</p>
 <span id="sphx-glr-gallery-transformations-upward-continuation-py"></span><h1>Upward continuation of a regular grid<a class="headerlink" href="#upward-continuation-of-a-regular-grid" title="Permalink to this headline">¶</a></h1>
 <img src="../../_images/sphx_glr_upward_continuation_001.png" srcset="../../_images/sphx_glr_upward_continuation_001.png" alt="upward continuation" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Upward continued magnetic grid:
- &lt;xarray.DataArray (northing: 370, easting: 346)&gt;
+ &lt;xarray.DataArray (northing: 370, easting: 346)&gt; Size: 1MB
 array([[  1.5318864 ,   1.85100319,   2.13679603, ..., -33.60489015,
         -31.65890937, -29.67750194],
        [  1.82033329,   2.17484726,   2.49236703, ..., -35.96395426,
@@ -645,9 +670,8 @@ array([[  1.5318864 ,   1.85100319,   2.13679603, ..., -33.60489015,
        [ 44.6368305 ,  47.50470955,  50.29752195, ...,   5.03756138,
           3.86192233,   2.84250804]])
 Coordinates:
-  * northing  (northing) float64 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
-  * easting   (easting) float64 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
-&lt;IPython.core.display.Image object&gt;
+  * easting   (easting) float64 3kB 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
+  * northing  (northing) float64 3kB 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
 </pre></div>
 </div>
 <div class="line-block">
@@ -714,7 +738,7 @@ Coordinates:
 <a href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.show.html#pygmt.Figure.show" title="pygmt.Figure.show" class="sphx-glr-backref-module-pygmt sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.027 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.393 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-transformations-upward-continuation-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/f1266ceee30e96614bff0e8494ee4fab/upward_continuation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">upward_continuation.py</span></code></a></p>
@@ -754,7 +778,7 @@ Coordinates:
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

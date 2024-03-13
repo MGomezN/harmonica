@@ -236,6 +236,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../user_guide/forward_modelling/dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../user_guide/forward_modelling/prism.html">
      Rectangular prisms
     </a>
@@ -417,6 +422,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -457,8 +477,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -671,12 +696,12 @@ Mohorovicic discontinuity (crust-mantle interface).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>basement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em>) – Height of the crystalline basement in meters.
+<li><p><strong>basement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>array</em>) – Height of the crystalline basement in meters.
 It usually refer to topography and bathymetry height without sediment
 cover.
 When considering sedimentary basins, it refers to crystalline basement
 (topography/bathymetry minus sediment thickness).</p></li>
-<li><p><strong>layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Dictionary that contains information about the thickness and density of
+<li><p><strong>layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Dictionary that contains information about the thickness and density of
 the layers located above the <code class="docutils literal notranslate"><span class="pre">basement</span></code>.
 For each layer, a single item should be created: its key will be the
 layer name as a <code class="docutils literal notranslate"><span class="pre">str</span></code> and its values must be tuples containing the
@@ -685,9 +710,9 @@ in that order.
 Thicknesses and densities can be floats or arrays.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no layers will be considered.
 Default as <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>density_crust</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>optional</em><em>)</em>) – Density of the crust in <span class="math notranslate nohighlight">\(kg/m^3\)</span>.</p></li>
-<li><p><strong>density_mantle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>optional</em><em>)</em>) – Mantle density in <span class="math notranslate nohighlight">\(kg/m^3\)</span>.</p></li>
-<li><p><strong>reference_depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>optional</em><em>)</em>) – The reference Moho depth (<span class="math notranslate nohighlight">\(H\)</span>) in meters.</p></li>
+<li><p><strong>density_crust</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>optional</em><em>)</em>) – Density of the crust in <span class="math notranslate nohighlight">\(kg/m^3\)</span>.</p></li>
+<li><p><strong>density_mantle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>optional</em><em>)</em>) – Mantle density in <span class="math notranslate nohighlight">\(kg/m^3\)</span>.</p></li>
+<li><p><strong>reference_depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>optional</em><em>)</em>) – The reference Moho depth (<span class="math notranslate nohighlight">\(H\)</span>) in meters.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -797,7 +822,7 @@ instead.</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

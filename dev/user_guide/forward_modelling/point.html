@@ -54,7 +54,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Rectangular prisms" href="prism.html" />
+    <link rel="next" title="Magnetic dipoles" href="dipole.html" />
     <link rel="prev" title="Forward modelling" href="index.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
@@ -232,6 +232,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Point sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dipole.html">
+     Magnetic dipoles
     </a>
    </li>
    <li class="toctree-l2">
@@ -416,6 +421,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -456,8 +476,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -705,7 +730,7 @@ potential it generates on a computation point located 100 meters above it.</p>
 <p>Define the point source and its mass (in kg):</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 <span class="n">mass</span> <span class="o">=</span> <span class="mf">1e6</span>
 </pre></div>
 </div>
@@ -716,7 +741,7 @@ potential it generates on a computation point located 100 meters above it.</p>
 <p>Define a computation point located 100m above the point source:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -727,13 +752,13 @@ potential it generates on a computation point located 100 meters above it.</p>
 computation point:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">potential</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;potential&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">potential</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;potential&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">potential</span><span class="p">,</span> <span class="s2">&quot;J/kg&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.672999999999999e-07 J/kg
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.674299999999999e-07 J/kg
 </pre></div>
 </div>
 </div>
@@ -746,7 +771,7 @@ grouping its coordinates in arrays and with a single call of the
 <p>Lets define a set of four point sources, along with their masses:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">easting</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">250</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">750</span><span class="p">])</span>
 <span class="n">northing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">750</span><span class="p">])</span>
@@ -764,7 +789,7 @@ grouping its coordinates in arrays and with a single call of the
 height:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
 
 <span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">1250</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mi">0</span>
@@ -779,7 +804,7 @@ height:</p>
 generated by the whole set of point sources on every computation point:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g_z</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_z</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -795,7 +820,7 @@ multiple CPUs, speeding up the computation.</p>
 <p>Lets plot this gravitational field:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
 
 <span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
    <span class="n">coordinates</span><span class="p">,</span> <span class="n">g_z</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">,</span> <span class="n">extra_coords_names</span><span class="o">=</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
@@ -817,7 +842,6 @@ multiple CPUs, speeding up the computation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/point_7_0.png" src="../../_images/point_7_0.png" />
 </div>
 </div>
 </div>
@@ -835,7 +859,7 @@ and located on the surface of the WGS84 ellipsoid.</p>
 <p>We can start by obtaining the WGS84 ellipsoid from <a class="reference external" href="https://www.fatiando.org/boule/latest/api/index.html#module-boule" title="(in Boule vv0.4.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">boule</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
 
 <span class="n">ellipsoid</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span>
 </pre></div>
@@ -847,7 +871,7 @@ and located on the surface of the WGS84 ellipsoid.</p>
 <p>Then we can define the point source in the equator along with its mass:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">0</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">geocentric_radius</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">geodetic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
 
@@ -861,7 +885,7 @@ and located on the surface of the WGS84 ellipsoid.</p>
 <p>We can also define a computation point located 1km above the point source:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -872,7 +896,7 @@ and located on the surface of the WGS84 ellipsoid.</p>
 computation point:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g_z</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_z</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span>
     <span class="n">coordinates</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">,</span> <span class="n">coordinate_system</span><span class="o">=</span><span class="s2">&quot;spherical&quot;</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g_z</span><span class="p">,</span> <span class="s2">&quot;mGal&quot;</span><span class="p">)</span>
@@ -880,7 +904,7 @@ computation point:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.6729999999999995e-06 mGal
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.6743e-06 mGal
 </pre></div>
 </div>
 </div>
@@ -894,7 +918,7 @@ gravitational field.</p>
 <p>Lets define a set point sources in geodetic coordinates and their masses:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">longitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">71</span><span class="p">,</span> <span class="o">-</span><span class="mi">71</span><span class="p">,</span> <span class="o">-</span><span class="mi">69</span><span class="p">,</span> <span class="o">-</span><span class="mi">69</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">71</span><span class="p">,</span> <span class="o">-</span><span class="mi">71</span><span class="p">,</span> <span class="o">-</span><span class="mi">69</span><span class="p">,</span> <span class="o">-</span><span class="mi">69</span><span class="p">])</span>
 <span class="n">latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">43</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">43</span><span class="p">])</span>
 <span class="n">height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">10e3</span><span class="p">,</span> <span class="o">-</span><span class="mf">20e3</span><span class="p">,</span> <span class="o">-</span><span class="mf">30e3</span><span class="p">,</span> <span class="o">-</span><span class="mf">20e3</span><span class="p">])</span>
 <span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
@@ -910,7 +934,7 @@ gravitational field.</p>
 coordinates and located at 1km above the ellipsoid:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">72</span><span class="p">,</span> <span class="o">-</span><span class="mi">68</span><span class="p">,</span> <span class="o">-</span><span class="mi">46</span><span class="p">,</span> <span class="o">-</span><span class="mi">42</span><span class="p">),</span>
     <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">101</span><span class="p">),</span>
     <span class="n">extra_coords</span><span class="o">=</span><span class="mf">20e3</span><span class="p">,</span>
@@ -926,7 +950,7 @@ spherical coordinates. To do so, we can use the
 <a class="reference external" href="https://www.fatiando.org/boule/latest/api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical" title="(in Boule vv0.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.geodetic_to_spherical</span></code></a> method:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">points_spherical</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">geodetic_to_spherical</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points_spherical</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">geodetic_to_spherical</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">)</span>
 <span class="n">coordinates_spherical</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">geodetic_to_spherical</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -938,7 +962,7 @@ spherical coordinates. To do so, we can use the
 field the source generate on every computation point:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g_z</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_z</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">point_gravity</span><span class="p">(</span>
     <span class="n">coordinates_spherical</span><span class="p">,</span>
     <span class="n">points_spherical</span><span class="p">,</span>
     <span class="n">masses</span><span class="p">,</span>
@@ -951,10 +975,10 @@ field the source generate on every computation point:</p>
 <div class="cell_output docutils container">
 </div>
 </div>
-<p>Lets plot these results using <a class="reference external" href="https://www.pygmt.org/latest/api/index.html#module-pygmt" title="(in PyGMT vv0.8.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code></a>:</p>
+<p>Lets plot these results using <a class="reference external" href="https://www.pygmt.org/latest/api/index.html#module-pygmt" title="(in PyGMT vv0.11.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
 
 <span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
    <span class="n">coordinates_spherical</span><span class="p">,</span> <span class="n">g_z</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">,</span> <span class="n">extra_coords_names</span><span class="o">=</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
@@ -977,7 +1001,27 @@ field the source generate on every computation point:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/point_16_1.png" src="../../_images/point_16_1.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../../_downloads/b27ed2516502eab756894b5063b68722/point.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">script</span></code></a></div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../../_downloads/7de55b5ec3bd51dada7ee24f44243194/point.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook</span></code></a></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -997,10 +1041,10 @@ field the source generate on every computation point:</p>
             <p class="prev-next-title">Forward modelling</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="prism.html" title="next page">
+    <a class='right-next' id="next-link" href="dipole.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Rectangular prisms</p>
+        <p class="prev-next-title">Magnetic dipoles</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -1012,7 +1056,7 @@ field the source generate on every computation point:</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>

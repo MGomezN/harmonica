@@ -39,7 +39,7 @@ Upward continuation of a regular grid
 
 
     Upward continued magnetic grid:
-     <xarray.DataArray (northing: 370, easting: 346)>
+     <xarray.DataArray (northing: 370, easting: 346)> Size: 1MB
     array([[  1.5318864 ,   1.85100319,   2.13679603, ..., -33.60489015,
             -31.65890937, -29.67750194],
            [  1.82033329,   2.17484726,   2.49236703, ..., -35.96395426,
@@ -54,9 +54,8 @@ Upward continuation of a regular grid
            [ 44.6368305 ,  47.50470955,  50.29752195, ...,   5.03756138,
               3.86192233,   2.84250804]])
     Coordinates:
-      * northing  (northing) float64 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
-      * easting   (easting) float64 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
-    <IPython.core.display.Image object>
+      * easting   (easting) float64 3kB 4.655e+05 4.656e+05 ... 4.827e+05 4.828e+05
+      * northing  (northing) float64 3kB 7.576e+06 7.576e+06 ... 7.595e+06 7.595e+06
 
 
 
@@ -130,7 +129,7 @@ Upward continuation of a regular grid
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.027 seconds)
+   **Total running time of the script:** ( 0 minutes  0.393 seconds)
 
 
 .. _sphx_glr_download_gallery_transformations_upward_continuation.py:

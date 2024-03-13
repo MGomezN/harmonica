@@ -236,6 +236,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="dipole.html">
+     Magnetic dipoles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="prism.html">
      Rectangular prisms
     </a>
@@ -417,6 +422,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic.html">
+     harmonica.dipole_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.dipole_magnetic_component.html">
+     harmonica.dipole_magnetic_component
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.prism_magnetic.html">
+     harmonica.prism_magnetic
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../api/generated/harmonica.prism_layer.html">
      harmonica.prism_layer
     </a>
@@ -457,8 +477,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/harmonica.test.html">
-     harmonica.test
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_vec_to_angles.html">
+     harmonica.magnetic_vec_to_angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/harmonica.magnetic_angles_to_vec.html">
+     harmonica.magnetic_angles_to_vec
     </a>
    </li>
   </ul>
@@ -700,7 +725,7 @@ its <em>top</em> boundary.</p>
 radius:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
 
 <span class="n">ellipsoid</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span>
 <span class="n">mean_radius</span> <span class="o">=</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_radius</span>
@@ -713,7 +738,7 @@ radius:</p>
 <p>Define the tesseroid and its density (in kg per cubic meters):</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tesseroid</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">10e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tesseroid</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">10e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">)</span>
 <span class="n">density</span> <span class="o">=</span> <span class="mi">2670</span>
 </pre></div>
 </div>
@@ -725,7 +750,7 @@ radius:</p>
 the <em>top</em> surface of the tesseroid:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
 
 <span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span>
@@ -742,7 +767,7 @@ the <em>top</em> surface of the tesseroid:</p>
 generates on the computation point:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">harmonica</span> <span class="k">as</span> <span class="nn">hm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">harmonica</span> <span class="k">as</span> <span class="nn">hm</span>
 
 <span class="n">gravity</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">tesseroid_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tesseroid</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">)</span>
 </pre></div>
@@ -761,7 +786,7 @@ radial component.</p>
 <p>And finally plot the computed gravitational field</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
    <span class="n">coordinates</span><span class="p">,</span> <span class="n">gravity</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;gravity&quot;</span><span class="p">,</span> <span class="n">extra_coords_names</span><span class="o">=</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
 
@@ -784,7 +809,6 @@ radial component.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tesseroid_4_0.png" src="../../_images/tesseroid_4_0.png" />
 </div>
 </div>
 <div class="section" id="multiple-tesseroids">
@@ -795,7 +819,7 @@ a single call of the <a class="reference internal" href="../../api/generated/har
 <p>Lets define a set of four prisms along with their densities:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tesseroids</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tesseroids</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">65</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">100e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">],</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">55</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">100e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">],</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">65</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">100e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">],</span>
@@ -811,7 +835,7 @@ a single call of the <a class="reference internal" href="../../api/generated/har
 <p>Compute their gravitational effect on a grid of computation points:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span>
     <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span>
     <span class="n">extra_coords</span><span class="o">=</span><span class="mf">100e3</span> <span class="o">+</span> <span class="n">mean_radius</span><span class="p">,</span>
@@ -826,7 +850,7 @@ a single call of the <a class="reference internal" href="../../api/generated/har
 <p>And plot the results:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
    <span class="n">coordinates</span><span class="p">,</span> <span class="n">gravity</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;gravity&quot;</span><span class="p">,</span> <span class="n">extra_coords_names</span><span class="o">=</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -848,7 +872,6 @@ a single call of the <a class="reference internal" href="../../api/generated/har
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tesseroid_7_0.png" src="../../_images/tesseroid_7_0.png" />
 </div>
 </div>
 </div>
@@ -868,7 +891,7 @@ given by a custom linear <code class="docutils literal notranslate"><span class=
 <p>Start by defining the tesseroids</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tesseroids</span> <span class="o">=</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tesseroids</span> <span class="o">=</span> <span class="p">(</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">3e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">],</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">5e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">],</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="n">mean_radius</span> <span class="o">-</span> <span class="mf">7e3</span><span class="p">,</span> <span class="n">mean_radius</span><span class="p">],</span>
@@ -884,7 +907,7 @@ given by a custom linear <code class="docutils literal notranslate"><span class=
 Numba can run the forward model efficiently.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
 
 <span class="nd">@njit</span>
 <span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
@@ -905,7 +928,7 @@ Numba can run the forward model efficiently.</p>
 above the mean Earth radius:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span>
     <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span>
     <span class="n">extra_coords</span><span class="o">=</span><span class="mf">100e3</span> <span class="o">+</span> <span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_radius</span><span class="p">,</span>
@@ -919,7 +942,7 @@ above the mean Earth radius:</p>
 <p>And compute the gravitational fields the tesseroids generate:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gravity</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">tesseroid_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tesseroids</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gravity</span> <span class="o">=</span> <span class="n">hm</span><span class="o">.</span><span class="n">tesseroid_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tesseroids</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;g_z&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -929,7 +952,7 @@ above the mean Earth radius:</p>
 <p>Finally, lets plot it:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
    <span class="n">coordinates</span><span class="p">,</span> <span class="n">gravity</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;gravity&quot;</span><span class="p">,</span> <span class="n">extra_coords_names</span><span class="o">=</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -951,7 +974,27 @@ above the mean Earth radius:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tesseroid_12_0.png" src="../../_images/tesseroid_12_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../../_downloads/d3dc420edd1776015b548cfd3258b602/tesseroid.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">script</span></code></a></div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference download internal" download="" href="../../_downloads/436375b8adf5065fca8e0bceeb14ad81/tesseroid.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook</span></code></a></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -985,7 +1028,7 @@ above the mean Earth radius:</p>
   <p>
     
         &copy; Copyright .<br/>
-      Last updated on Mar 02, 2023.<br/>
+      Last updated on Mar 13, 2024.<br/>
   </p>
 </footer>
 </main>
